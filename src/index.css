@@ -1,0 +1,248 @@
+/* =============================================
+   BASE + KEYFRAMES (theme-independent)
+   ============================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+/* Visually hidden but accessible to screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Visible keyboard focus — accessibility */
+:focus-visible {
+  outline: 2px solid var(--ring, rgba(220, 38, 38, 0.45));
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Form fields use their own themed focus ring */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: none;
+}
+
+/* =============================================
+   LIGHT THEME — crisp neutrals + red accent
+   ============================================= */
+:root,
+[data-theme='light'] {
+  --primary: #dc2626;
+  --primary-dark: #b91c1c;
+  --primary-darker: #991b1b;
+  --primary-light: #fee2e2;
+  --primary-lighter: #fef2f2;
+  --primary-glow: rgba(220, 38, 38, 0.16);
+  --ring: rgba(220, 38, 38, 0.45);
+
+  --danger: #dc2626;
+  --danger-dark: #b91c1c;
+  --danger-light: #fee2e2;
+
+  --bg: #faf9fb;
+  --bg-elevated: #ffffff;
+  --card-bg: #ffffff;
+  --card-bg-hover: #fef6f6;
+  --surface: #f4f3f6;
+  --surface-light: #ecebf0;
+
+  --border: #ece8ee;
+  --border-light: #d6d1dd;
+  --border-accent: rgba(220, 38, 38, 0.35);
+
+  --text: #191820;
+  --text-secondary: #4b4857;
+  --text-muted: #8a8696;
+
+  --shadow-xs: 0 1px 2px rgba(24, 22, 31, 0.05);
+  --shadow-sm: 0 2px 8px rgba(24, 22, 31, 0.06);
+  --shadow-md: 0 6px 20px rgba(24, 22, 31, 0.08);
+  --shadow-lg: 0 14px 40px rgba(24, 22, 31, 0.12);
+  --shadow-glow: 0 6px 22px rgba(220, 38, 38, 0.14);
+
+  --gradient: linear-gradient(135deg, #dc2626 0%, #e8544a 100%);
+  --gradient-subtle: linear-gradient(135deg, #fef2f2 0%, #fff 100%);
+  --gradient-dark: linear-gradient(145deg, #2b2230 0%, #171419 100%);
+
+  --glass: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(24, 22, 31, 0.08);
+
+  --badge-upi-bg: #ecfdf5;
+  --badge-upi-text: #047857;
+  --badge-upi-border: #a7f3d0;
+
+  --success-bg: #ecfdf5;
+  --success-text: #047857;
+  --success-border: #a7f3d0;
+
+  color: var(--text);
+  background: var(--bg);
+}
+
+[data-theme='light'] body {
+  background:
+    radial-gradient(ellipse 55% 42% at 12% -5%, rgba(252, 228, 228, 0.6) 0%, transparent 55%),
+    radial-gradient(ellipse 42% 34% at 95% 105%, rgba(245, 232, 236, 0.5) 0%, transparent 55%),
+    var(--bg);
+}
+
+/* =============================================
+   DARK THEME — deep slate + red accent
+   ============================================= */
+[data-theme='dark'] {
+  --primary: #f36a5e;
+  --primary-dark: #ef4444;
+  --primary-darker: #dc2626;
+  --primary-light: rgba(243, 106, 94, 0.14);
+  --primary-lighter: rgba(243, 106, 94, 0.06);
+  --primary-glow: rgba(243, 106, 94, 0.22);
+  --ring: rgba(243, 106, 94, 0.5);
+
+  --danger: #f36a5e;
+  --danger-dark: #ef4444;
+  --danger-light: rgba(243, 106, 94, 0.14);
+
+  --bg: #0f0f13;
+  --bg-elevated: #17171d;
+  --card-bg: #1b1b22;
+  --card-bg-hover: #23232c;
+  --surface: #26262f;
+  --surface-light: #2f2f3a;
+
+  --border: #2a2a34;
+  --border-light: #3d3d49;
+  --border-accent: rgba(243, 106, 94, 0.35);
+
+  --text: #f1f0f4;
+  --text-secondary: #a6a3b2;
+  --text-muted: #6f6c7c;
+
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.55);
+  --shadow-glow: 0 6px 22px rgba(243, 106, 94, 0.18);
+
+  --gradient: linear-gradient(135deg, #f36a5e 0%, #ef4444 100%);
+  --gradient-subtle: linear-gradient(135deg, rgba(243, 106, 94, 0.08) 0%, rgba(243, 106, 94, 0.02) 100%);
+  --gradient-dark: linear-gradient(145deg, #23202a 0%, #131318 100%);
+
+  --glass: rgba(19, 19, 24, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.07);
+
+  --badge-upi-bg: rgba(16, 185, 129, 0.12);
+  --badge-upi-text: #34d399;
+  --badge-upi-border: rgba(16, 185, 129, 0.3);
+
+  --success-bg: rgba(16, 185, 129, 0.12);
+  --success-text: #34d399;
+  --success-border: rgba(16, 185, 129, 0.3);
+
+  color: var(--text);
+  background: var(--bg);
+}
+
+[data-theme='dark'] body {
+  background:
+    radial-gradient(ellipse 60% 45% at 8% -5%, rgba(243, 106, 94, 0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 32% at 95% 105%, rgba(185, 28, 28, 0.06) 0%, transparent 45%),
+    var(--bg);
+}
+
+/* =============================================
+   KEYFRAMES
+   ============================================= */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slideInDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 var(--primary-glow); }
+  50% { box-shadow: 0 0 0 8px transparent; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* =============================================
+   REDUCED MOTION — respect user preference
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

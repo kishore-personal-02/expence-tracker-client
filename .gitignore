@@ -11,9 +11,11 @@ node_modules
 dist
 dist-ssr
 *.local
-.env
-.env.*
-!.env.example
+
+# .env and .env.production are committed on purpose: they only hold
+# public VITE_ vars, and deploys need .env.production to build.
+# Use .env.local for personal machine-only overrides.
+.env.local
 
 # Editor directories and files
 .vscode/*

@@ -5,24 +5,16 @@ import { defineConfig, loadEnv } from 'vite'
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
 
-  // Where the client's API calls point to. A relative value (default /api)
-  // means "same origin" — the Vite dev server proxies it to the backend,
-  // and production serves it from the same Express app. An absolute URL
-  // sends requests straight to a separate API host.
-  const apiUrl = env.VITE_API_URL || '/api'
-  const devApiTarget = env.DEV_API_TARGET || 'http://localhost:5000'
-  const base = env.VITE_BASE || '/'
-
-  const proxy = {}
-  if (apiUrl.startsWith('/')) {
-    proxy[apiUrl] = { target: devApiTarget, changeOrigin: true }
-  }
-
   return {
-    base,
+    base: env.VITE_BASE || '/',
     plugins: [react()],
+
+    // Only used by "npm run dev". Local VITE_API_URL is "/api",
+    // so send those calls to the backend on port 5000.
     server: {
-      proxy,
+      proxy: {
+        '/api': env.DEV_API_TARGET || 'http://localhost:5000',
+      },
     },
   }
 })

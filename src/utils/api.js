@@ -1,28 +1,22 @@
 import axios from 'axios'
 
-// API base URL — set VITE_API_URL at build time to point at a separate API
-// host (e.g. your deployed backend). Defaults to /api (same origin in
-// production, Vite dev-proxied to the backend in development).
-const baseURL = import.meta.env.VITE_API_URL || '/api'
-
+// Host URL comes from the env files — no logic needed here.
+//   .env            -> local
+//   .env.production -> production
 const api = axios.create({
-  baseURL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  baseURL: import.meta.env.VITE_API_URL,
 })
 
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
-    }
-    return config
-  },
-  (error) => Promise.reject(error)
-)
+// Send the saved login token with every request.
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
 
+// Token rejected -> log the user out.
 api.interceptors.response.use(
   (response) => response,
   (error) => {
